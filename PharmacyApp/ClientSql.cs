@@ -24,11 +24,11 @@ namespace PharmacyApp
                 _context.Clients.SingleOrDefault(x => x.id == client.id).post_code = client.post_code;
             }
         }
-        public static async void InsertClients(List<Client> clients)
+        public static void InsertClients(List<Client> clients)
         {
             foreach (var client in clients)
             {
-                if (!await _context.Clients.AnyAsync(x => x.name == client.name && x.address == client.address))
+                if (!_context.Clients.Any(x => x.name == client.name && x.address == client.address))
                 {
                     _context.Clients.Add(client);
                 }
